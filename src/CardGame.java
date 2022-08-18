@@ -28,12 +28,7 @@ public class CardGame {
     }
 
     public List<Card> sortDeckInNumberOrder() {
-        Collections.sort(cardDeck, new Comparator<Card>() {
-            @Override
-            public int compare(Card o1, Card o2) {
-                return o1.getValue()-o2.getValue();
-            }
-        });
+        Collections.sort(cardDeck, (a, b) -> a.getValue()-b.getValue());
 
         return cardDeck;
     }
@@ -66,6 +61,7 @@ public class CardGame {
     public static void main(String[] args) {
         CardGame cardGame = new CardGame();
         cardGame.shuffleDeck();
+        cardGame.sortDeckInNumberOrder();
         cardGame.getDeck();
     }
 }
