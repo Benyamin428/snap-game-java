@@ -46,10 +46,4 @@ public class CardGame {
         return cardDeck;
     }
 
-    public static void main(String[] args) {
-        CardGame cardGame = new CardGame();
-        cardGame.shuffleDeck();
-        cardGame.sortDeckIntoSuits();
-        cardGame.getDeck();
-    }
 }
