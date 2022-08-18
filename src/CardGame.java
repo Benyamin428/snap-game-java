@@ -1,7 +1,7 @@
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
+import com.sun.jdi.Value;
+
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class CardGame {
     private List<Card> cardDeck = new ArrayList<>();
@@ -31,9 +31,28 @@ public class CardGame {
         Collections.sort(cardDeck, new Comparator<Card>() {
             @Override
             public int compare(Card o1, Card o2) {
-                return o1.value-o2.value;
+                return o1.getValue()-o2.getValue();
             }
         });
+
+        return cardDeck;
+    }
+
+    public List<Card> sortDeckIntoSuits() {
+        Map<String, List<Card>> cardDeckInSuits = new HashMap<>();
+
+        for (Card card : cardDeck) {
+            if(!cardDeckInSuits.containsKey(card.getSuit())) {
+                cardDeckInSuits.put(card.getSuit(), new ArrayList<>());
+            }
+            cardDeckInSuits.get(card.getSuit()).add(card);
+        }
+
+        //the stream below converts a map data structure into a list
+        cardDeck = cardDeckInSuits.values()
+                .stream()
+                .flatMap(item -> item.stream())
+                .collect(Collectors.toList());
 
         return cardDeck;
     }
@@ -41,6 +60,7 @@ public class CardGame {
     public static void main(String[] args) {
         CardGame cardGame = new CardGame();
         cardGame.sortDeckInNumberOrder();
+        cardGame.sortDeckIntoSuits();
         cardGame.getDeck();
     }
 }
