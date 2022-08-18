@@ -57,10 +57,15 @@ public class CardGame {
         return cardDeck;
     }
 
+    public List<Card> shuffleDeck() {
+        Collections.shuffle(cardDeck);
+
+        return cardDeck;
+    }
+
     public static void main(String[] args) {
         CardGame cardGame = new CardGame();
-        cardGame.sortDeckInNumberOrder();
-        cardGame.sortDeckIntoSuits();
+        cardGame.shuffleDeck();
         cardGame.getDeck();
     }
 }
