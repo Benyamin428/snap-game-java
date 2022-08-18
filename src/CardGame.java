@@ -34,20 +34,8 @@ public class CardGame {
     }
 
     public List<Card> sortDeckIntoSuits() {
-        Map<String, List<Card>> cardDeckInSuits = new HashMap<>();
 
-        for (Card card : cardDeck) {
-            if(!cardDeckInSuits.containsKey(card.getSuit())) {
-                cardDeckInSuits.put(card.getSuit(), new ArrayList<>());
-            }
-            cardDeckInSuits.get(card.getSuit()).add(card);
-        }
-
-        //the stream below converts a map data structure into a list
-        cardDeck = cardDeckInSuits.values()
-                .stream()
-                .flatMap(item -> item.stream())
-                .collect(Collectors.toList());
+        Collections.sort(cardDeck, (a, b) -> a.getSuit().compareTo(b.getSuit()));
 
         return cardDeck;
     }
@@ -61,7 +49,7 @@ public class CardGame {
     public static void main(String[] args) {
         CardGame cardGame = new CardGame();
         cardGame.shuffleDeck();
-        cardGame.sortDeckInNumberOrder();
+        cardGame.sortDeckIntoSuits();
         cardGame.getDeck();
     }
 }
