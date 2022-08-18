@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CardGame {
-    List<Card> cardDeck = new ArrayList<>();
+    private List<Card> cardDeck = new ArrayList<>();
     public CardGame() {
         char[] suit = {'\u2764', '\u2663', '\u2666', '\u2660'};
         String[] rank = {"2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "K", "Q", "A"};
@@ -19,6 +19,10 @@ public class CardGame {
         for (Card card : cardDeck) {
             System.out.println(card.toString());
         }
+    }
+
+    public Card dealCard() {
+        return cardDeck.get(0);
     }
 
     public static void main(String[] args) {
